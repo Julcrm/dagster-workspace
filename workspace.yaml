@@ -1,0 +1,8 @@
+# Référence tous les projets via gRPC
+# Chaque projet tourne dans son propre service Coolify sur le port 4000
+load_from:
+  - grpc_server:
+      host: velib-lakehouse
+      port: 4000
+      location_name: velib_lakehouse
+  # Ajouter les futurs projets ici de la même façon

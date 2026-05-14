@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  dagster-webserver:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./workspace.yaml:/opt/dagster/app/workspace.yaml
+    env_file:
+      - .env
+
+  dagster-daemon:
+    build: .
+    command: dagster-daemon run -w workspace.yaml
+    volumes:
+      - ./workspace.yaml:/opt/dagster/app/workspace.yaml
+    env_file:
+      - .env
+    depends_on:
+      - dagster-webserver
