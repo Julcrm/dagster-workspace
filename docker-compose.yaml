@@ -8,10 +8,10 @@ services:
       - "3000:3000"
     environment:
       - DAGSTER_HOME=/opt/dagster/dagster_home
-    env_file:
-      - .env
-    volumes:
-      - dagster_home:/opt/dagster/dagster_home
+      - DAGSTER_POSTGRES_USER=${DAGSTER_POSTGRES_USER}
+      - DAGSTER_POSTGRES_PASSWORD=${DAGSTER_POSTGRES_PASSWORD}
+      - DAGSTER_POSTGRES_HOST=${DAGSTER_POSTGRES_HOST}
+      - DAGSTER_POSTGRES_DB=${DAGSTER_POSTGRES_DB}
     networks:
       - coolify
     restart: always
@@ -22,10 +22,10 @@ services:
     command: dagster-daemon run -w workspace.yaml
     environment:
       - DAGSTER_HOME=/opt/dagster/dagster_home
-    env_file:
-      - .env
-    volumes:
-      - dagster_home:/opt/dagster/dagster_home
+      - DAGSTER_POSTGRES_USER=${DAGSTER_POSTGRES_USER}
+      - DAGSTER_POSTGRES_PASSWORD=${DAGSTER_POSTGRES_PASSWORD}
+      - DAGSTER_POSTGRES_HOST=${DAGSTER_POSTGRES_HOST}
+      - DAGSTER_POSTGRES_DB=${DAGSTER_POSTGRES_DB}
     networks:
       - coolify
     restart: always
@@ -36,7 +36,3 @@ networks:
   coolify:
     external: true
     name: coolify
-
-volumes:
-  dagster_home:
-    driver: local
