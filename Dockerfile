@@ -2,6 +2,8 @@ FROM python:3.11-slim
 
 WORKDIR /opt/dagster/app
 
+RUN mkdir -p $DAGSTER_HOME
+
 RUN pip install --no-cache-dir \
     dagster \
     dagster-webserver

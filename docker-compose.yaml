@@ -5,6 +5,8 @@ services:
     build: .
     ports:
       - "3000:3000"
+    environment:
+      - DAGSTER_HOME=/opt/dagster/dagster_home
     env_file:
       - .env
     networks:
@@ -13,6 +15,8 @@ services:
   dagster-daemon:
     build: .
     command: dagster-daemon run -w workspace.yaml
+    environment:
+      - DAGSTER_HOME=/opt/dagster/dagster_home
     env_file:
       - .env
     depends_on:
