@@ -4,8 +4,7 @@ WORKDIR /opt/dagster/app
 
 RUN pip install --no-cache-dir \
     dagster \
-    dagster-webserver \
-    dagster-daemon
+    dagster-webserver
 
 COPY workspace.yaml .
 
