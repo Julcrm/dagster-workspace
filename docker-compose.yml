@@ -9,6 +9,8 @@ services:
       - ./workspace.yaml:/opt/dagster/app/workspace.yaml
     env_file:
       - .env
+    networks:
+      - coolify
 
   dagster-daemon:
     build: .
@@ -19,3 +21,10 @@ services:
       - .env
     depends_on:
       - dagster-webserver
+    networks:
+      - coolify
+
+networks:
+  coolify:
+    external: true
+    name: coolify
