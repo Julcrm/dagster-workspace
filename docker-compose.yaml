@@ -10,22 +10,33 @@ services:
       - DAGSTER_HOME=/opt/dagster/dagster_home
     env_file:
       - .env
+    volumes:
+      - dagster_home:/opt/dagster/dagster_home
     networks:
       - coolify
+    restart: always
 
   dagster-daemon:
     build: .
+    container_name: dagster-daemon
     command: dagster-daemon run -w workspace.yaml
     environment:
       - DAGSTER_HOME=/opt/dagster/dagster_home
     env_file:
       - .env
-    depends_on:
-      - dagster-webserver
+    volumes:
+      - dagster_home:/opt/dagster/dagster_home
     networks:
       - coolify
+    restart: always
+    depends_on:
+      - dagster-webserver
 
 networks:
   coolify:
     external: true
     name: coolify
+
+volumes:
+  dagster_home:
+    driver: local
