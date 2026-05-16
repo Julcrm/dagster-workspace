@@ -1,23 +1,23 @@
 # Dagster Workspace
 
-Service central d'orchestration pour tous les projets data du portfolio.
-Tourne en permanence sur Coolify — les projets s'y connectent via gRPC.
+Central orchestration service for all data projects in the portfolio.
+Runs continuously on Coolify — projects connect to it via gRPC.
 
 ## Architecture
-- Ce service : webserver + daemon uniquement
-- Chaque projet : son propre Docker, ses propres assets, expose le port 4000
+- This service: webserver + daemon only
+- Each project: its own Docker container, its own assets, exposes port 4000
 
-## Ajouter un projet
-1. Déployer le projet comme service Coolify (port 4000)
-2. Ajouter dans workspace.yaml :
+## Adding a project
+1. Deploy the project as a Coolify service (port 4000)
+2. Add it to workspace.yaml:
    ```yaml
    - grpc_server:
-       host: nom-du-service-coolify
+       host: coolify-service-name
        port: 4000
-       location_name: nom_projet
+       location_name: project_name
    ```
-3. Redémarrer ce service
+3. Restart this service
 
-## Projets actifs
+## Active projects
 
-- **velib_lakehouse** — Pipeline lakehouse medallion Vélib Paris
+- **velib_lakehouse** — Vélib Paris medallion lakehouse pipeline

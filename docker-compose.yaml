@@ -1,6 +1,16 @@
 version: "3.8"
 
+# =============================================================================
+# Dagster Workspace — Docker Compose
+# Services:
+#   - dagster-webserver: Dagster UI + GraphQL API (port 3000, public)
+#   - dagster-daemon: scheduler, sensor runner, run launcher (no exposed port)
+# Storage: PostgreSQL (external, injected via env vars)
+# Network: coolify (external — shared with all project code servers)
+# =============================================================================
+
 services:
+  # Serves the Dagster UI and handles API requests from the browser
   dagster-webserver:
     build: .
     container_name: dagster-webserver
@@ -16,6 +26,7 @@ services:
       - coolify
     restart: always
 
+  # Runs schedules, sensors and launches pipeline runs in the background
   dagster-daemon:
     build: .
     container_name: dagster-daemon
@@ -33,6 +44,7 @@ services:
       - dagster-webserver
 
 networks:
+  # Shared Coolify network — allows this service to reach project gRPC servers by container name
   coolify:
     external: true
     name: coolify
