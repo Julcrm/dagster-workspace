@@ -1,7 +1,7 @@
 # Dagster Workspace
 
 Central orchestration service for all data projects in the portfolio.
-Runs continuously on Coolify — projects connect to it via gRPC.
+Runs continuously on Coolify, projects connect to it via gRPC.
 
 ## Architecture
 - This service: webserver + daemon only
@@ -20,4 +20,4 @@ Runs continuously on Coolify — projects connect to it via gRPC.
 
 ## Active projects
 
-- **velib_lakehouse** — Vélib Paris medallion lakehouse pipeline
+- **velib_lakehouse** - Vélib Paris medallion lakehouse pipeline
