@@ -3,7 +3,9 @@ version: "3.8"
 # =============================================================================
 # Dagster Workspace — Docker Compose
 # Services:
-#   - dagster-webserver: Dagster UI + GraphQL API (port 3000, public)
+#   - dagster-webserver: Dagster UI + GraphQL API (port 3000)
+#       * host port bound to BIND_IP (unset → 127.0.0.1; Tailscale IP → tailnet only)
+#       * project containers reach it internally at http://dagster-webserver:3000
 #   - dagster-daemon: scheduler, sensor runner, run launcher (no exposed port)
 # Storage: PostgreSQL (external, injected via env vars)
 # Network: coolify (external — shared with all project code servers)
@@ -15,7 +17,8 @@ services:
     build: .
     container_name: dagster-webserver
     ports:
-      - "3000:3000"
+      # Never bind to a public IP
+      - "${BIND_IP:-127.0.0.1}:3000:3000"
     environment:
       - DAGSTER_HOME=/opt/dagster/dagster_home
       - DAGSTER_POSTGRES_USER=${DAGSTER_POSTGRES_USER}
