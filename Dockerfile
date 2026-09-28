@@ -13,7 +13,14 @@ ENV DAGSTER_HOME=/opt/dagster/dagster_home
 RUN mkdir -p /opt/dagster/dagster_home
 
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir dagster dagster-webserver dagster-postgres
+# Pinned: an unpinned rebuild on 2026-09-28 pulled SQLAlchemy 2.1, whose default
+# PostgreSQL driver is psycopg 3 (not installed): webserver and daemon crash-looped.
+# Keep dagster on the series of the code servers (bluesky-streamhouse: 1.13.24)
+RUN pip install --no-cache-dir \
+    dagster==1.13.24 \
+    dagster-webserver==1.13.24 \
+    dagster-postgres==0.29.24 \
+    "sqlalchemy>=2.0,<2.1"
 
 # workspace.yaml lists the gRPC code servers (one per project)
 COPY workspace.yaml .
