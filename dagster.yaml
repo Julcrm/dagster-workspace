@@ -10,3 +10,15 @@ storage:
       db_name:
         env: DAGSTER_POSTGRES_DB
       port: 5432
+
+# Run monitoring (daemon), for every project of this instance.
+# The DefaultRunLauncher used here (runs execute in each project's code server) does not
+# support run worker health checks: a STARTED run whose container was replaced is NOT
+# detected (bluesky-streamhouse closes those itself at code server startup). What this
+# covers: runs stuck while starting (launch to a code server that never answers) and
+# cancellations that never complete. No max runtime: a catch-up run may last hours.
+run_monitoring:
+  enabled: true
+  start_timeout_seconds: 300
+  cancel_timeout_seconds: 600
+  poll_interval_seconds: 120
