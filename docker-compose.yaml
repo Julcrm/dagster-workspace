@@ -32,6 +32,10 @@ services:
       timeout: 10s
       retries: 3
       start_period: 60s
+    deploy:
+      resources:
+        limits:
+          memory: 512M  # peak 144 MiB measured (2026-10-08); shared VPS, a leak must not spread
     networks:
       - coolify
     restart: always
@@ -55,6 +59,12 @@ services:
       timeout: 20s
       retries: 3
       start_period: 120s
+    deploy:
+      resources:
+        limits:
+          # Peak 276 MiB measured (2026-10-08). Runs execute in the code servers
+          # (DefaultRunLauncher), not here: only sensors, schedules and launches
+          memory: 768M
     networks:
       - coolify
     restart: always
