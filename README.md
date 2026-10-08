@@ -19,7 +19,10 @@ Runs continuously on Coolify, projects connect to it via gRPC.
    ```
 3. The code server needs the same `DAGSTER_POSTGRES_*` variables as this service:
    runs execute in its container (DefaultRunLauncher) and write to this storage
-4. Push to `main`: the Coolify webhook redeploys the webserver and the daemon
+4. Push to `main`: the CI (`.github/workflows/ci.yml`) validates the compose file and
+   `workspace.yaml`, builds the image, then triggers the Coolify deployment through
+   Tailscale (skipped with a notice until the repository secrets `TS_OAUTH_CLIENT_ID`,
+   `TS_AUDIENCE`, `COOLIFY_WEBHOOK_URL` and `COOLIFY_WEBHOOK_SECRET` are set)
 
 ## Versions
 
