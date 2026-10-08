@@ -11,4 +11,9 @@ load_from:
       host: bluesky-duckdb
       port: 4000
       location_name: bluesky_duckdb
+  # bluesky-streamhouse, branche A (Spark + Iceberg + dbt-spark via le serveur Thrift)
+  - grpc_server:
+      host: bluesky-spark
+      port: 4000
+      location_name: bluesky_spark
   # Ajouter les futurs projets ici de la même façon
