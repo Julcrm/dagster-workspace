@@ -5,13 +5,13 @@ load_from:
       host: velib-lakehouse
       port: 4000
       location_name: velib_lakehouse
-  # bluesky-streamhouse, branche B (Quix + DuckLake + dbt-duckdb). Le nom d'hôte est le
+  # bluesky-streamhouse, branche DuckDB (Quix + DuckLake + dbt-duckdb). Le nom d'hôte est le
   # nom du service dans le compose du projet (alias réseau ajouté par Coolify)
   - grpc_server:
       host: bluesky-duckdb
       port: 4000
       location_name: bluesky_duckdb
-  # bluesky-streamhouse, branche A (Spark + Iceberg + dbt-spark via le serveur Thrift)
+  # bluesky-streamhouse, branche Spark (Spark + Iceberg + dbt-spark via le serveur Thrift)
   - grpc_server:
       host: bluesky-spark
       port: 4000
