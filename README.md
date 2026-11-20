@@ -37,3 +37,4 @@ SQLAlchemy release and took the UI and the daemon down).
 | `velib_lakehouse` | `velib-lakehouse` | Vélib Paris medallion lakehouse pipeline |
 | `bluesky_duckdb` | `bluesky-duckdb` | Bluesky Streamhouse, DuckDB branch: Silver/Gold dbt-duckdb on DuckLake (Quix Streams ingestion) |
 | `bluesky_spark` | `bluesky-spark` | Bluesky Streamhouse, Spark branch: Silver/Gold dbt-spark on Iceberg through a Spark Thrift server (Spark Structured Streaming ingestion) |
+| `ia_cloud` | `ia-cloud-dagster` | IA Cloud express delivery: nightly retraining of the eligibility model (`retrain_model`), artifacts on Garage |
