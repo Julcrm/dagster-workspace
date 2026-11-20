@@ -16,4 +16,9 @@ load_from:
       host: bluesky-spark
       port: 4000
       location_name: bluesky_spark
+  # ia-cloud : réentraînement planifié du modèle de livraison express (job retrain_model)
+  - grpc_server:
+      host: ia-cloud-dagster
+      port: 4000
+      location_name: ia_cloud
   # Ajouter les futurs projets ici de la même façon
